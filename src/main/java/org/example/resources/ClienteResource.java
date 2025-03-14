@@ -1,8 +1,8 @@
 package org.example.resources;
 
-
+import org.example.entities.Cliente;
 import org.example.entities.Usuario;
-import org.example.services.UsuarioService;
+import org.example.services.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,30 +12,30 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping(value = "/usuarios")
-public class UsuarioResource {
+@RequestMapping(value = "/clientes")
+public class ClienteResource {
 
     @Autowired
-    private UsuarioService service;
+    private ClienteService service;
 
     @GetMapping
-    public ResponseEntity<List<Usuario>> findAll() {
+    public ResponseEntity<List<Cliente>> findAll() {
 
-        List<Usuario> usuario = service.findAll();
-        return ResponseEntity.ok(usuario);
+        List<Cliente> cliente = service.findAll();
+        return ResponseEntity.ok(cliente);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Usuario> findById(@PathVariable Long id) {
+    public ResponseEntity<Cliente> findById(@PathVariable Long id) {
 
-        Optional<Usuario> usuario = service.findById(id);
-        return usuario.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+        Optional<Cliente> cliente = service.findById(id);
+        return cliente.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @PostMapping
-    public ResponseEntity<Usuario> insert(@RequestBody Usuario usuario) {
+    public ResponseEntity<Cliente> insert(@RequestBody Cliente cliente) {
 
-        Usuario created = service.insert(usuario);
+        Cliente created = service.insert(cliente);
         return  ResponseEntity.status(HttpStatus.CREATED).body(created);
     }
 
@@ -48,9 +48,9 @@ public class UsuarioResource {
 
     @PutMapping("/{id}")
     public ResponseEntity<?> update(@PathVariable Long id,
-                                    @RequestBody Usuario usuario) {
+                                    @RequestBody Cliente cliente) {
 
-        if (service.update(id, usuario)) {
+        if (service.update(id, cliente)) {
 
             return ResponseEntity.ok().build();
 
@@ -59,7 +59,5 @@ public class UsuarioResource {
             return ResponseEntity.notFound().build();
         }
     }
-
-
 
 }

@@ -1,13 +1,13 @@
 package org.example.entities;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDate;
 
+@Entity
 public class Cliente {
 
+
+    //Atributos do java e do database.
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) //Auto Increment.
     @Column(name = "ID_CLIENTE")//nome no banco de dados.
