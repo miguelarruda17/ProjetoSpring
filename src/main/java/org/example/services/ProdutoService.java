@@ -2,7 +2,7 @@ package org.example.services;
 
 import org.example.entities.Produto;
 import org.example.repositories.ProdutoRepository;
-import org.hibernate.ObjectNotFoundException;
+import org.example.services.exeptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -34,8 +34,8 @@ public class ProdutoService {
 
     public Produto insert(Produto obj) {
 
-        obj.setProId(null);
-        obj.setFornecedor(fornecedorService.findById(obj.getFornecedor().getForId()));
+        obj.setId(null);
+        obj.setFornecedor(fornecedorService.findById(obj.getFornecedor().getId()));
         obj = repository.save(obj);
         return obj;
 

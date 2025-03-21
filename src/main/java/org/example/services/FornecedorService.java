@@ -2,8 +2,8 @@ package org.example.services;
 
 import org.example.entities.Fornecedor;
 import org.example.repositories.FornecedorRepository;
+import org.example.services.exeptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.context.config.ConfigDataResourceNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
