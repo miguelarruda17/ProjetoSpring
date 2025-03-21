@@ -1,9 +1,10 @@
 package org.example.entities;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
-public class Contato {
+public class Contato implements Serializable {
 
 
     //Atributos do java e do database.
@@ -21,20 +22,29 @@ public class Contato {
     @Column(name = "EMAIL")
     private String email;
 
+    @ManyToOne
+    @JoinColumn(name = "CLIENTE", nullable = false)
+    private Cliente cliente;
 
-    public Contato() {  }//Construtor vazio.
+
+    public Contato() {
+    }//Construtor vazio.
 
 
     //Construtor com argumentos(Construtor de inicialização de atributos do java).
-    public Contato(Long idContato, String telefone, String celular, String email) {
+
+
+    public Contato(Long idContato, String telefone, String celular, String email, Cliente cliente) {
         this.idContato = idContato;
         this.telefone = telefone;
         this.celular = celular;
         this.email = email;
+        this.cliente = cliente;
     }
 
-
     //GETTERS E SETTERS.
+
+
     public Long getIdContato() {
         return idContato;
     }
@@ -66,5 +76,12 @@ public class Contato {
     public void setEmail(String email) {
         this.email = email;
     }
-}
 
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+}

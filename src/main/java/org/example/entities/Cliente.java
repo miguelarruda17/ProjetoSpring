@@ -1,10 +1,11 @@
 package org.example.entities;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDate;
 
 @Entity
-public class Cliente {
+public class Cliente implements Serializable{
 
 
     //Atributos do java e do database.

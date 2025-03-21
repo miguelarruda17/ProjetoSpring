@@ -9,7 +9,7 @@ public class Produto  implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
-    private long id;
+    private Long id;
 
     @Column(name = "NOME")
     private String nome;
@@ -21,7 +21,7 @@ public class Produto  implements Serializable {
     public Produto() {
     }
 
-    public Produto(long id, String nome, Fornecedor fornecedor) {
+    public Produto(Long id, String nome, Fornecedor fornecedor) {
         this.id = id;
         this.nome = nome;
         this.fornecedor = fornecedor;

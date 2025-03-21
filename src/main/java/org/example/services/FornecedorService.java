@@ -26,9 +26,9 @@ public class FornecedorService {
 
     }
 
-    public  Fornecedor insert(Fornecedor cliente) {
+    public  Fornecedor insert(Fornecedor fornecedor) {
 
-        return repository.save(cliente);
+        return repository.save(fornecedor);
     }
 
     public void delete(Long id) {
@@ -44,7 +44,6 @@ public class FornecedorService {
             Fornecedor fornecedor1 = optional.get();
             fornecedor1.setNome(fornecedor.getNome());
             fornecedor1.setId(fornecedor.getId());
-
             repository.save(fornecedor1);
             return true;
         }

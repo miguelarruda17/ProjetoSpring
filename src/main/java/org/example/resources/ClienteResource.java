@@ -1,6 +1,7 @@
 package org.example.resources;
 
 import org.example.entities.Cliente;
+import org.example.entities.Produto;
 import org.example.entities.Usuario;
 import org.example.services.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,10 +27,8 @@ public class ClienteResource {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Cliente> findById(@PathVariable Long id) {
-
-        Optional<Cliente> cliente = service.findById(id);
-        return cliente.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+    public Cliente findById(@PathVariable Long id) {
+        return service.findById(id);
     }
 
     @PostMapping
