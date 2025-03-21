@@ -3,6 +3,7 @@ package org.example.services;
 import org.example.entities.Fornecedor;
 import org.example.repositories.FornecedorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.config.ConfigDataResourceNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,9 +20,10 @@ public class FornecedorService {
         return repository.findAll();
     }
 
-    public Optional<Fornecedor> findById(Long id){
+    public Fornecedor findById(Long id){
+        Optional<Fornecedor> obj = repository.findById(id);
+        return obj.orElseThrow(() -> new ResourceNotFoundException(id));
 
-        return repository.findById(id);
     }
 
     public  Fornecedor insert(Fornecedor cliente) {
