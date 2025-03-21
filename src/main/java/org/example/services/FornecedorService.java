@@ -1,25 +1,52 @@
 package org.example.services;
 
 import org.example.entities.Fornecedor;
-import org.example.entities.Usuario;
-import org.example.repositories.UsuarioRepository;
+import org.example.repositories.FornecedorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class FornecedorService {
 
     @Autowired
-    private UsuarioRepository repository;
+    private FornecedorRepository repository;
 
-    public List<Usuario> findAll(){
+    public List<Fornecedor> findAll(){
+
         return repository.findAll();
     }
 
-    public Optional<Fornecedor> findById(Long id) {
+    public Optional<Fornecedor> findById(Long id){
+
         return repository.findById(id);
     }
-    public
+
+    public  Fornecedor insert(Fornecedor cliente) {
+
+        return repository.save(cliente);
+    }
+
+    public void delete(Long id) {
+
+        repository.deleteById(id);
+    }
+
+    public boolean update(Long id, Fornecedor fornecedor){
+
+        Optional<Fornecedor> optional = repository.findById(id);
+        if (optional.isPresent()){
+
+            Fornecedor fornecedor1 = optional.get();
+            fornecedor1.setNome(fornecedor.getNome());
+            fornecedor1.setId(fornecedor.getId());
+
+            repository.save(fornecedor1);
+            return true;
+        }
+        return  false;
+    }
 
 }
